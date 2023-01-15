@@ -81,12 +81,16 @@ $tasks = [
                 <h2 class="content__side-heading">Проекты</h2>
 
                 <nav class="main-navigation">
+                    <?php if($projects): ?>
                     <ul class="main-navigation__list">
+                        <?php foreach ($projects as $key => $project): ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Название проекта</a>
+                            <a class="main-navigation__list-item-link" href="#"><?=$project?></a>
                             <span class="main-navigation__list-item-count">0</span>
                         </li>
+                        <?php endforeach; ?>
                     </ul>
+                    <?php endif; ?>
                 </nav>
 
                 <a class="button button--transparent button--plus content__side-button"
