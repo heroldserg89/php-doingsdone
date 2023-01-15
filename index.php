@@ -1,4 +1,5 @@
 <?php
+require_once 'helpers.php';
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 $projects = ['Входящие', 'Учёба', 'Работа', 'Домашние дела', 'Авто'];
@@ -39,7 +40,7 @@ $tasks = [
         'category' => 'Домашние дела',
         'check' => false,
     ],
-]
+];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -83,10 +84,10 @@ $tasks = [
                 <nav class="main-navigation">
                     <?php if ($projects): ?>
                         <ul class="main-navigation__list">
-                            <?php foreach ($projects as $key => $project): ?>
+                            <?php foreach ($projects as $project): ?>
                                 <li class="main-navigation__list-item">
-                                    <a class="main-navigation__list-item-link" href="#"><?= $project ?></a>
-                                    <span class="main-navigation__list-item-count">0</span>
+                                    <a class="main-navigation__list-item-link" href="#"><?=$project;?></a>
+                                    <span class="main-navigation__list-item-count"><?=count_task_category($tasks, $project);?></span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>

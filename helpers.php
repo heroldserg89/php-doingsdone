@@ -142,3 +142,22 @@ function include_template($name, array $data = []) {
 
     return $result;
 }
+
+/**
+ * Считает количество задач в проекте
+ * @param array $array Список задач
+ * @param string $name Ассоциативный массив с данными для шаблона
+ * @return int Количество задач
+ */
+
+function count_task_category (array $array, string $name):int {
+    $count = 0;
+    foreach ($array as $item) {
+        if(isset($item['category'])){
+            if ($item['category'] === $name){
+                $count++;
+            }
+        }
+    }
+    return $count;
+}
