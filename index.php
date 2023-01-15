@@ -1,6 +1,45 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
+$projects = ['Входящие', 'Учёба', 'Работа', 'Домашние дела', 'Авто'];
+$tasks = [
+    [
+        'name' => 'Собеседование в IT компании',
+        'date' => '01.12.2019',
+        'category' => 'Работа',
+        'check' => false,
+    ],
+    [
+        'name' => 'Выполнить тестовое задание',
+        'date' => '25.12.2019',
+        'category' => 'Работа',
+        'check' => false,
+    ],
+    [
+        'name' => 'Сделать задание первого раздела',
+        'date' => '21.12.2019',
+        'category' => 'Учеба',
+        'check' => true,
+    ],
+    [
+        'name' => 'Встреча с другом	',
+        'date' => '22.12.2019',
+        'category' => 'Входящие',
+        'check' => false,
+    ],
+    [
+        'name' => 'Купить корм для кота	',
+        'date' => null,
+        'category' => 'Домашние дела',
+        'check' => false,
+    ],
+    [
+        'name' => 'Заказать пиццу',
+        'date' => null,
+        'category' => 'Домашние дела',
+        'check' => false,
+    ],
+]
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -24,7 +63,8 @@ $show_complete_tasks = rand(0, 1);
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus open-modal" href="pages/form-task.html">Добавить задачу</a>
+                <a class="main-header__side-item button button--plus open-modal" href="pages/form-task.html">Добавить
+                    задачу</a>
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__data">
@@ -72,7 +112,7 @@ $show_complete_tasks = rand(0, 1);
 
                     <label class="checkbox">
                         <input class="checkbox__input visually-hidden show_completed" type="checkbox"
-                        <?=($show_complete_tasks === 1) ? 'checked' : '';?>>
+                            <?= ($show_complete_tasks === 1) ? 'checked' : ''; ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
@@ -92,7 +132,7 @@ $show_complete_tasks = rand(0, 1);
 
                         <td class="task__date"></td>
                     </tr>
-                    <?php if($show_complete_tasks === 1) :?>
+                    <?php if ($show_complete_tasks === 1) : ?>
                         <tr class="tasks__item task task--completed">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
@@ -105,7 +145,7 @@ $show_complete_tasks = rand(0, 1);
                             <td class="task__controls">
                             </td>
                         </tr>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </table>
             </main>
         </div>
