@@ -81,15 +81,15 @@ $tasks = [
                 <h2 class="content__side-heading">Проекты</h2>
 
                 <nav class="main-navigation">
-                    <?php if($projects): ?>
-                    <ul class="main-navigation__list">
-                        <?php foreach ($projects as $key => $project): ?>
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=$project?></a>
-                            <span class="main-navigation__list-item-count">0</span>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <?php if ($projects): ?>
+                        <ul class="main-navigation__list">
+                            <?php foreach ($projects as $key => $project): ?>
+                                <li class="main-navigation__list-item">
+                                    <a class="main-navigation__list-item-link" href="#"><?= $project ?></a>
+                                    <span class="main-navigation__list-item-count">0</span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
                     <?php endif; ?>
                 </nav>
 
@@ -120,37 +120,33 @@ $tasks = [
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
+                <?php if ($tasks): ?>
 
-                <table class="tasks">
-                    <tr class="tasks__item task">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                <span class="checkbox__text">Сделать главную страницу Дела в порядке</span>
-                            </label>
-                        </td>
+                    <table class="tasks">
+                        <?php foreach ($tasks as $key => $task):
+                            if ($task['check'] === true and $show_complete_tasks === 0):
+                                continue;
+                            else: ?>
+                                <tr class="tasks__item task <?= ($task['check'] === true) ? 'task--completed' : '' ?>">
+                                    <td class="task__select">
+                                        <label class="checkbox task__checkbox">
+                                            <input class="checkbox__input visually-hidden task__checkbox"
+                                                   type="checkbox" value="1">
+                                            <span class="checkbox__text"><?= $task['name']; ?></span>
+                                        </label>
+                                    </td>
 
-                        <td class="task__file">
-                            <a class="download-link" href="#">Home.psd</a>
-                        </td>
+                                    <td class="task__file">
+                                        <a class="download-link" href="#">Home.psd</a>
+                                    </td>
 
-                        <td class="task__date"></td>
-                    </tr>
-                    <?php if ($show_complete_tasks === 1) : ?>
-                        <tr class="tasks__item task task--completed">
-                            <td class="task__select">
-                                <label class="checkbox task__checkbox">
-                                    <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                    <span class="checkbox__text">Записаться на интенсив "Базовый PHP"</span>
-                                </label>
-                            </td>
-                            <td class="task__date">10.10.2019</td>
+                                    <td class="task__date"><?= $task['date']; ?></td>
+                                </tr>
 
-                            <td class="task__controls">
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                </table>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </table>
+                <?php endif; ?>
             </main>
         </div>
     </div>
