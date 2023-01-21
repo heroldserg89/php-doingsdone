@@ -3,7 +3,7 @@
         <h2 class="content__side-heading">Проекты</h2>
 
         <nav class="main-navigation">
-            <?php if ($projects): ?>
+            <?php if ($projects && is_array($projects)): ?>
                 <ul class="main-navigation__list">
                     <?php foreach ($projects as $project): ?>
                         <li class="main-navigation__list-item">
@@ -42,14 +42,16 @@
                 <span class="checkbox__text">Показывать выполненные</span>
             </label>
         </div>
-        <?php if ($tasks): ?>
-
+        <?php if ($tasks && is_array($tasks)): ?>
             <table class="tasks">
-                <?php foreach ($tasks as $key => $task):
+                <?php foreach ($tasks as $task):
                     if ($task['check'] === true and $show_complete_tasks === 0):
                         continue;
                     else: ?>
-                        <tr class="tasks__item task <?=($task['check'] === true) ? 'task--completed' : '';?>">
+                        <tr class="tasks__item task
+                        <?=$task['check'] === true ? 'task--completed' : '';?>
+                        <?=isset($task['date']) && is_task_important($task['date']) ? 'task--important' : '';?>
+                       ">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
                                     <input class="checkbox__input visually-hidden task__checkbox"
@@ -60,7 +62,7 @@
                             <td class="task__file">
                                 <a class="download-link" href="#">Home.psd</a>
                             </td>
-                            <td class="task__date"><?=$task['date'];?></td>
+                            <td class="task__date"><?=$task['date'] ?? ''?></td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach; ?>

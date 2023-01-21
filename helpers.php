@@ -161,3 +161,21 @@ function count_task_category (array $array, string $name):int {
     }
     return $count;
 }
+
+/**
+ * Считает количество часов до выполнения задачи
+ * @param string $date Дата в формате d.m.Y
+ * @return bool Возвращает true если осталось 24 часа или менее до выполнения задачи
+ */
+
+function is_task_important(string $date):bool {
+    $time = 60 * 60 * 24;
+    $date = strtotime($date);
+
+    $date_now = strtotime(date('y-m-d'));
+    $date_diff = $date - $date_now;
+    if ($date_diff <= $time) {
+        return true;
+    }
+    return false;
+}
