@@ -174,7 +174,7 @@ function is_task_important(string $date):bool {
 
     $date_now = strtotime(date('y-m-d'));
     $date_diff = $date - $date_now;
-    if ($date_diff <= $time && $date_diff >= 0) {
+    if ($date_diff <= $time) {
         return true;
     }
     return false;
