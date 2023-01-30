@@ -61,18 +61,22 @@ SET name        = 'Заказать пиццу',
     user_id     = '1',
     project_id  = '4';
 
+# Получение проектов для одного пользователя
 SELECT *
 FROM projects
 WHERE user_id = '1';
 
+# Получение всех задач для одного проекта
 SELECT *
 FROM tasks
 WHERE project_id = '1';
 
+# Пометить задачу как выполненую
 UPDATE tasks
 SET status = '1'
 WHERE id = '1';
 
+# Сменить название задачи
 UPDATE tasks
 SET name = 'Новое название'
 WHERE id = '1';
